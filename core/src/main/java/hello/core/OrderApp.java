@@ -11,8 +11,11 @@ import hello.core.order.OrderServiceImpl;
 public class OrderApp {
 
     public static void main(String[] args) { // psvm 입력하고 Enter침
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
+        // MemberService memberService = new MemberServiceImpl();
+        // OrderService orderService = new OrderServiceImpl();
 
         Long memberId = 1L; // 멤버를 먼저 저장해야되기 때문에 첫번 째로 작성해줌
         Member member = new Member(memberId, "memberA", Grade.VIP);

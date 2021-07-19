@@ -8,7 +8,9 @@ import hello.core.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) { // psvm 입력하고 Enter침
-        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService(); // appConfig에 memberService 달라고 하면 memberService 인터페이스를 넘겨줌 memberService에는 MemberServiceImpl이 담김
+        // MemberService memberService = new MemberServiceImpl();
         Member member = new Member(1L, "memberA", Grade.VIP); // Ctrl + Alt + V(Extract Variable) 눌러서 member 변수 꺼내옴
                                                                        // 1L: Long 타입이어서 뒤에 L을 붙여줘야함
         memberService.join(member);
