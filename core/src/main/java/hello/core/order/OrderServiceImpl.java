@@ -11,7 +11,7 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository = new MemoryMemberRepository(); // 회원 찾기
     private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 고정 할인 정책
 
-    // 단일 체계 원칙을 잘 구현하고 설계한 것 -> 만약 할인에 대한 변경이 있을 시 이 부분(할인쪽)만 수정하면 됨
+    // 단일 체계 원칙을 잘 구현하고 설계한 것 -> 만약 할인에 대한 변경이 있을 이 부분(할인쪽)만 수정하면 됨
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId); // 회원 조회
