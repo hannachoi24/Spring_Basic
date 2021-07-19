@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
@@ -9,7 +10,8 @@ import hello.core.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository = new MemoryMemberRepository(); // 회원 찾기
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 고정 할인 정책
+    private DiscountPolicy discountPolicy; // 인터페이스(DiscountPolicy)에만 의존하도록 코드 변경 -> DIP 지킴
+    // private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); // 고정 할인 정책
 
     // 단일 체계 원칙을 잘 구현하고 설계한 것 -> 만약 할인에 대한 변경이 있을 이 부분(할인쪽)만 수정하면 됨
     @Override
