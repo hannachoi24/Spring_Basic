@@ -9,10 +9,14 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 // Constructor based Injection (생성자를 통한 주입) => 외부에서 생성자를 만들어 주입
 public class AppConfig {
 
+    @Bean
     public MemberService memberService(){
         return new MemberServiceImpl(memberRepository());
         // AppConfig를 통해서 MemberService를 불러서 사용 그러면 MemberServiceImpl 객체가 생성이 됨
@@ -20,16 +24,19 @@ public class AppConfig {
         // 즉 MemberServiceImpl을 만들고 만든 MemberServiceImpl은 MemoryMemberRepository를 사용해 주입할거야!
     }
 
-    private MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
 
+    @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
         // AppConfig를 통해서 OrderService를 조회하면 OrderServiceImpl이 반환이 되는데 거기에는 MemoryMemberRepository, FixDiscountPolicy가 들어감
         // 즉 OrderServiceImpl이 MemoryMemberRepository, FixDiscountPolicy를 참조하도록
     }
 
+    @Bean
     public DiscountPolicy discountPolicy() {
         // return new FixDiscountPolicy();
         return new RateDiscountPolicy();
