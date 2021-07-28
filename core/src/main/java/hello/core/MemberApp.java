@@ -13,7 +13,8 @@ public class MemberApp {
         // AppConfig appConfig = new AppConfig();
         // MemberService memberService = appConfig.memberService(); // appConfig에 memberService 달라고 하면 memberService 인터페이스를 넘겨줌 memberService에는 MemberServiceImpl이 담김
         // MemberService memberService = new MemberServiceImpl();
-
+        
+        // 스프링 컨테이너 적용
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
         // ApplicationContext를 스프링 컨테이너로 생각하면 됨 -> 모든 객체들(AppConfig에서 @Bean부분)을 관리해줌
         // 즉, 스프링이 AppConfig에 있는 환경설정 정보들(객체 생성한 것들)을 다 스프링 컨테이너에 넣어서 관리해준다.
