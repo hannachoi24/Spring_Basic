@@ -40,7 +40,8 @@ public class ApplicationContextSameBeanFindTest {
     @Test
     @DisplayName("특정 타입을 모두 조회하기") // Ctrl + Shift + Enter -> 한번에 바로 넘어감
     void findAllBeanByType() {
-        Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class);
+
+        Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class); // ac.getBeansOfType(MemberRepository.class) 입력 후 단축키 Ctrl + Alt + V
         for (String key : beansOfType.keySet()) { // iter 입력 후 Enter -> for문 자동생성
             System.out.println("key = " + key + "value = " + beansOfType.get(key)); // soutv 입력 후 Enter -> 출력문 자동생성
         }
