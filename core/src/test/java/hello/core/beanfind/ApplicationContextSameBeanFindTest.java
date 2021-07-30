@@ -23,7 +23,7 @@ public class ApplicationContextSameBeanFindTest {
     // SameBeanConfig 부분을 실행하게 되는데 memberRepository가 두개여서 둘 중에 무엇을 선택해야하는지 모호하기 때문에 예외가 터짐
 
     @Test
-    @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 중복 오류가 발생한다다")
+    @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 중복 오류가 발생한다")
     void findBeanByTypeDuplication() {
         MemberRepository bean = ac.getBean(MemberRepository.class);
         assertThrows(NoUniqueBeanDefinitionException.class, () -> ac.getBean(MemberRepository.class));
