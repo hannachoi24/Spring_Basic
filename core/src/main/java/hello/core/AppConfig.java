@@ -16,8 +16,25 @@ import org.springframework.context.annotation.Configuration;
 // Constructor based Injection (생성자를 통한 주입) => 외부에서 생성자를 만들어 주입
 public class AppConfig {
 
-    @Bean
+    // @Bean memberService -> memberRepository 호출 -> new MemoryMemberRepository() 호출
+    // @Bean orderService -> new MemoryMemberRepository() 호출
+
+    // <호출>
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+    // call AppConfig.memberRepository
+
+    // <실제 호출 결과>
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+    // -> memberRepository는 3번이 아니라 1번 호출됐다.
+
+   @Bean
     public MemberService memberService(){
+       System.out.println("call AppConfig.memberService"); // soutm 입력 후 Enter 치면 바로 출력문 생성
         return new MemberServiceImpl(memberRepository());
         // AppConfig를 통해서 MemberService를 불러서 사용 그러면 MemberServiceImpl 객체가 생성이 됨
         // 이거에 대한 참조값(MemoryMemberRepository)을 MemberServiceImpl에서 생성자 부분인 memberRepository에 넣어주게 됨
@@ -26,11 +43,13 @@ public class AppConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+       System.out.println("call AppConfig.memberRepository");
+       return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
         // AppConfig를 통해서 OrderService를 조회하면 OrderServiceImpl이 반환이 되는데 거기에는 MemoryMemberRepository, FixDiscountPolicy가 들어감
         // 즉 OrderServiceImpl이 MemoryMemberRepository, FixDiscountPolicy를 참조하도록
