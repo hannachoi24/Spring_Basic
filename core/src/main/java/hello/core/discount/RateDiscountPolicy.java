@@ -2,7 +2,9 @@ package hello.core.discount;
 
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component // 자동 스프링 빈 등록
 public class RateDiscountPolicy implements DiscountPolicy{
 
     private int discountPercent = 10;

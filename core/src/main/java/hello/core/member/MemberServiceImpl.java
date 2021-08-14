@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component // 자동 스프링 빈 등록
 public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository; // 밖에서(AppConfig) 생성을해 주입(Constructor based Injection)해주므로 추상화(인터페이스)에만 의존하게 됨 -> DIP 지킴(즉, 구체화에 대해서는 모르게 됨)
@@ -7,6 +11,9 @@ public class MemberServiceImpl implements MemberService{
 
     // private final MemberRepository memberRepository = new MemoryMemberRepository(); -> 구현 객체 선택
 
+    @Autowired // @Component를 하게되면 의존관계주입을 해줄 수 없게됨(수동으로 등록할 수 있는 곳이 없어서)
+               // 그래서 @Autowired를 붙여 MemberRepository 타입에 맞는 스프링 빈을 찾아와 의존관계를 자동으로 연결해 주입
+               // 마치 ac.getBean(MemberRepository.class)와 같이 동작
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
