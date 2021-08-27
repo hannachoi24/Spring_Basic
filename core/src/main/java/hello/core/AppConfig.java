@@ -50,7 +50,8 @@ public class AppConfig {
     @Bean
     public OrderService orderService() {
         System.out.println("call AppConfig.orderService");
-        return new OrderServiceImpl(memberRepository(), discountPolicy());
+        // return new OrderServiceImpl(memberRepository(), discountPolicy()); -> 다양한 의존관계 주입_필드 주입 때문에 잠시 주석처리
+        return null;
         // AppConfig를 통해서 OrderService를 조회하면 OrderServiceImpl이 반환이 되는데 거기에는 MemoryMemberRepository, FixDiscountPolicy가 들어감
         // 즉 OrderServiceImpl이 MemoryMemberRepository, FixDiscountPolicy를 참조하도록
     }
