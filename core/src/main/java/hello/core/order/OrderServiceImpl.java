@@ -23,6 +23,7 @@ public class OrderServiceImpl implements OrderService{
     // private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
     // -> OrderServiceImpl이 직접 객체를 생성하고 구체적인(RateDiscountPolicy) 것 까지 선택 -> 관심사 분리 필요
 
+    
     /*다양한 의존관계 주입 방법_필드 주입(사용하지 않는게 좋음)
     @Autowired private MemberRepository memberRepository;
     @Autowired private DiscountPolicy discountPolicy;*/
