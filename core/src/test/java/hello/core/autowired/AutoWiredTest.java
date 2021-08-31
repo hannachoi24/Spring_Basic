@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.lang.Nullable;
 
 public class AutoWiredTest {
+
     // 옵션 처리
     @Test
     void AutowiredOption() {
