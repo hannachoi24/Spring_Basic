@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 public class OrderServiceImpl implements OrderService{
     // 다양한 의존관계 주입 방법_생성자 주입
     // final이면 기본으로 또는 생성자를 통해 할당 되어야 한다.
-     private MemberRepository memberRepository; // 회원 찾기
-     private DiscountPolicy discountPolicy; // 밖에서(AppConfig) 생성을해 주입(Constructor based Injection)해주므로 추상화(인터페이스)에만 의존하게 됨 -> DIP 지킴(즉, 구체화에 대해서는 모르게 됨)
+     private final MemberRepository memberRepository; // 회원 찾기
+     private final DiscountPolicy discountPolicy; // 밖에서(AppConfig) 생성을해 주입(Constructor based Injection)해주므로 추상화(인터페이스)에만 의존하게 됨 -> DIP 지킴(즉, 구체화에 대해서는 모르게 됨)
     // 생성자를 통해 MemoryMemberRepository, FixDiscountPolicy가 할당됨
 
 
@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService{
     }*/
 
     // 생성자가 딱 1개만 있으면 @Autowired를 생략해도 자동 주입 된다. 물론 스프링 빈에만 해당
-    // @Autowired
+    @Autowired
     // @Component를 하게되면 의존관계주입을 해줄 수 없게됨(수동으로 등록할 수 있는 곳이 없어서)
     // 그래서 @Autowired를 붙여 MemberRepository 타입에 맞는 스프링 빈을 찾아와 의존관계를 자동으로 연결해 주입
     // 마치 ac.getBean(MemberRepository.class)와 같이 동작
@@ -52,12 +52,12 @@ public class OrderServiceImpl implements OrderService{
     }
     // 생성자를 통해서 MemoryMemberRepository, FixDiscountPolicy가 넘어가고 위에 할당이 된다.
 
-    // 다양한 의존관계 주입 방법_일반 메서드 주입(일반적으로 잘 사용하지 않는다.)
+    /*다양한 의존관계 주입 방법_일반 메서드 주입(일반적으로 잘 사용하지 않는다.)
     @Autowired
     public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }
+    }*/
 
     // 단일 체계 원칙을 잘 구현하고 설계한 것 -> 만약 할인에 대한 변경이 있을 이 부분(할인쪽)만 수정하면 됨
     @Override
